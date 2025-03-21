@@ -31,14 +31,15 @@ export type Category ={
   seo_tags: string[];
   is_other: boolean;
 }
-export type CategoryProperty= {
+export type Property= {
   id: number;
   name: string;
   type: string;
   parent_id: number | null;
-  options: option[]
+  options: Option[] |[]
+  
 }
-export type option={
+export type Option={
   id:number;
   name:string;
   has_child:boolean

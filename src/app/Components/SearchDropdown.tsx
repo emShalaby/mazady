@@ -1,78 +1,78 @@
 "use client";
-import { useState, useEffect } from "react";
-import type { Category } from "@/lib/types";
-const SearchDropdown = ({
-  items,
-  onSelect,
-}: {
+import { useState } from "react";
+import type { Category, Option, Property } from "@/lib/types";
+import { getOptionProperties } from "@/app/actions";
+import SearchDropdownUi from "./SearchDropdownUi";
+
+interface SearchDropdownProps {
   items: Category[];
-  onSelect: (item: Category) => Promise<void>;
-}) => {
-  const [query, setQuery] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  onSelect: (item: Category) => Promise<Property[]>;
+  label: string;
+}
 
-  const filteredItems = items.filter((item) => {
-    const name = item.name;
-    return name.toLowerCase().includes(query.toLowerCase());
-  });
+const SearchDropdown = ({ items, onSelect, label }: SearchDropdownProps) => {
+  const [childDropdownsValues, setChildDropdownsValues] = useState<
+    (Property[] | Option[])[]
+  >([]);
+  const [childDropdownsLabels, setChildDropdownsLabels] = useState<string[]>(
+    []
+  );
 
-  useEffect(() => {
-    if (!query) return;
-
-    const exactMatch = items.find((item) => {
-      const name = typeof item === "string" ? item : item.name;
-      return name.toLowerCase() === query.toLowerCase();
-    });
-
-    if (exactMatch && onSelect) {
-      onSelect(exactMatch);
-    }
-  }, [query, items, onSelect]);
-
-  const handleSelect = (item: Category) => {
-    if (onSelect) {
-      onSelect(item);
-    }
-    setQuery(item.name);
-    setIsOpen(false);
+  const handleCategorySelect = async (value: { id: number; name: string }) => {
+    const category = items.find((item) => item.id === value.id);
+    const CategoryProperties = category ? await onSelect(category) : null;
+    if (CategoryProperties)
+      CategoryProperties.forEach((prop) => {
+        setChildDropdownsValues((prev) => {
+          return [...prev, prop.options];
+        });
+        setChildDropdownsLabels((prev) => {
+          return [...prev, prop.name];
+        });
+      });
+  };
+  const handleOptionSelect = async (value: { name: string; id: number }) => {
+    const optionProperties = await getOptionProperties(value.id);
+    const hasNoChildren = optionProperties.some((e) => e.options.length === 0);
+    if (hasNoChildren) {
+      setChildDropdownsLabels((prev) => [...prev, value.name]);
+      setChildDropdownsValues((prev) => [...prev, optionProperties]);
+    } else
+      optionProperties.forEach(async (prop) => {
+        setChildDropdownsLabels((prev) => {
+          return [...prev, prop.name];
+        });
+        setChildDropdownsValues((prev) => {
+          return [...prev, prop.options];
+        });
+      });
   };
 
   return (
     <div className="w-64 relative">
-      <input
-        type="text"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onFocus={() => setIsOpen(true)}
-        onBlur={() => setTimeout(() => setIsOpen(false), 200)}
-        placeholder={"search"}
-        className="border rounded-md text-gray-800 w-full focus:outline-none focus:ring-[#D20653] focus:ring-2 px-4 py-2 transition-all"
+      <SearchDropdownUi
+        items={items.map((item) => {
+          return { name: item.name, id: item.id };
+        })}
+        label={label}
+        onSelect={handleCategorySelect}
       />
-
-      {isOpen && filteredItems.length > 0 && (
-        <ul className="bg-white border rounded-md shadow-lg w-full absolute max-h-60 mt-1 overflow-y-auto z-10">
-          {filteredItems.map((item, index) => {
-            const name = typeof item === "string" ? item : item.name;
-            const id = typeof item === "string" ? index : item.id;
-            return (
-              <li
-                key={id}
-                onClick={() => handleSelect(item)}
-                className="text-gray-800 cursor-pointer hover:bg-gradient-to-r hover:from-[#D20653] hover:text-white hover:to-[#FF951D] px-4 py-2 transition-colors"
-              >
-                {name}
-              </li>
-            );
-          })}
-        </ul>
-      )}
-
-      {isOpen && filteredItems.length === 0 && query && (
-        <div className="bg-white border rounded-md shadow-lg text-gray-500 w-full absolute mt-1 px-4 py-2 z-10">
-          No results found
+      {childDropdownsValues.length > 0 && (
+        <div className="mt-4 space-y-4">
+          {childDropdownsValues.map((childItems, index) => (
+            <SearchDropdownUi
+              key={index}
+              items={childItems.map((child) => {
+                return { name: child.name, id: child.id };
+              })}
+              label={childDropdownsLabels[index]}
+              onSelect={(item) => handleOptionSelect(item)}
+            />
+          ))}
         </div>
       )}
     </div>
   );
 };
+
 export default SearchDropdown;
