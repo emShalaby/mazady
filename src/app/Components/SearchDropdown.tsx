@@ -19,6 +19,8 @@ const SearchDropdown = ({ items, onSelect, label }: SearchDropdownProps) => {
   );
 
   const handleCategorySelect = async (value: { id: number; name: string }) => {
+    setChildDropdownsLabels([]);
+    setChildDropdownsValues([]);
     const category = items.find((item) => item.id === value.id);
     const CategoryProperties = category ? await onSelect(category) : null;
     if (CategoryProperties)
@@ -47,7 +49,10 @@ const SearchDropdown = ({ items, onSelect, label }: SearchDropdownProps) => {
         });
       });
   };
-
+  const handleCategoryChange = () => {
+    setChildDropdownsLabels([]);
+    setChildDropdownsValues([]);
+  };
   return (
     <div className="w-64 relative">
       <SearchDropdownUi
@@ -56,6 +61,7 @@ const SearchDropdown = ({ items, onSelect, label }: SearchDropdownProps) => {
         })}
         label={label}
         onSelect={handleCategorySelect}
+        onChange={handleCategoryChange}
       />
       {childDropdownsValues.length > 0 && (
         <div className="mt-4 space-y-4">
