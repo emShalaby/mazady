@@ -19,17 +19,24 @@ const SearchDropdownUi = ({
 }: SearchDropdownPropsUi) => {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-
+  const [selected, setSelected] = useState("");
   const filteredItems = items.filter((item) => {
     return item.name.toLowerCase().includes(query.toLowerCase());
   });
 
   const handleSelect = async (item: ItemType) => {
-    setQuery(item.name);
-    setIsOpen(false);
-    if (onSelect) onSelect(item);
+    if (selected !== item.name) {
+      setSelected(item.name);
+      setQuery(item.name);
+      setIsOpen(false);
+      if (onSelect) onSelect(item);
+    }
   };
-
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelected("");
+    setQuery(e.target.value);
+    if (onChange) onChange(e);
+  };
   return (
     <div className="w-64 relative">
       <label htmlFor="search-bar">{label}</label>
@@ -37,10 +44,7 @@ const SearchDropdownUi = ({
         type="text"
         name="search-bar"
         value={query}
-        onChange={(e) => {
-          setQuery(e.target.value);
-          if (onChange) onChange(e);
-        }}
+        onChange={handleChange}
         onFocus={() => setIsOpen(true)}
         onBlur={() => setTimeout(() => setIsOpen(false), 200)}
         placeholder="search"
