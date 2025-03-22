@@ -18,7 +18,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 sm:px-5 md:max-w-[407px] md:p-6">
+      <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 sm:px-5 md:p-6">
         <div>
           <Image
             src={"/profile-pic-big.png"}

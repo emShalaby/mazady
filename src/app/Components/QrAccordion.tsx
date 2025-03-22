@@ -8,7 +8,7 @@ const QRAccordion = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 sm:px-5 md:max-w-[407px] md:p-6">
+    <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 sm:px-5 md:p-6">
       <div className="flex justify-between p-4 items-center">
         <h2 className="text-lg font-medium">QR Code</h2>
         <div className="flex gap-4 items-center ">

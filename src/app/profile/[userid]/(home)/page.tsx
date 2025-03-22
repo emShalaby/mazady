@@ -18,16 +18,16 @@ const UserHome = async ({
       </header>
       <main className="flex flex-col bg-[#f6f4f5] p-4 gap-6 min-h-screen md:px-21 lg:py-12 md:flex-row md:gap-6">
         <div className="flex flex-col gap-6 ">
-          <section>
+          <section className="md:max-w-[407px]">
             <ProfileCard {...mockProfileInfo} />
           </section>
 
-          <section>
+          <section className=" md:max-w-[407px]">
             <QRAccordion />
           </section>
         </div>
 
-        <section>
+        <section className="flex flex-1">
           <TabSection products={mockProducts} articles={[]} reviews={[]} />
         </section>
       </main>
