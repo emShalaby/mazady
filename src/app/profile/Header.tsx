@@ -1,5 +1,6 @@
 import Image from "next/image";
 import NavLink from "./NavLink";
+import BurgerMenu from "../Components/BurgerMenu";
 
 interface HeaderProps {
   userId: string;
@@ -8,9 +9,8 @@ const Header = ({ userId }: HeaderProps) => {
   return (
     <div className="flex justify-between py-4 sm:py-4 lg:px-20 md:px-10 px-4  sm:px-8 md:py-0">
       <div className="flex gap-2 sm:gap-4">
-        <button className="md:hidden hover:cursor-pointer">
-          <Image src={"/menu.svg"} width={24} height={24} alt="menu-img" />
-        </button>
+        <BurgerMenu userId={userId} />
+
         <div className="relative w-[101px] h-[32px] md:w-[108px] md:h-[42px] md:mt-[12px]  md:mb-[12px]">
           <Image src="/logo.png" alt="logo-image" layout="fill" />
         </div>
