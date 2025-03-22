@@ -39,10 +39,10 @@ const SearchDropdownUi = ({
   };
   return (
     <div className="w-64 relative">
-      <label htmlFor="search-bar">{label}</label>
+      <label htmlFor={label}>{label}</label>
       <input
         type="text"
-        name="search-bar"
+        name={label}
         value={query}
         onChange={handleChange}
         onFocus={() => setIsOpen(true)}
@@ -50,7 +50,6 @@ const SearchDropdownUi = ({
         placeholder="search"
         className="border rounded-md text-gray-800 w-full focus:outline-none focus:ring-[#D20653] focus:ring-2 px-4 py-2 transition-all"
       />
-
       {isOpen && filteredItems.length > 0 && (
         <ul className="bg-white border rounded-md shadow-lg w-full absolute max-h-60 mt-1 overflow-y-auto z-10">
           {filteredItems.map((item) => (
@@ -66,7 +65,6 @@ const SearchDropdownUi = ({
           ))}
         </ul>
       )}
-
       {isOpen && filteredItems.length === 0 && query && (
         <div className="bg-white border rounded-md shadow-lg text-gray-500 w-full absolute mt-1 px-4 py-2 z-10">
           No results found

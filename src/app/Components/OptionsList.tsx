@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getOptionProperties } from "../actions";
 import { Option, Property } from "@/lib/types";
-import SearchDropdownUi from "./SearchDropdownUi";
+import SearchDropdownUi from "./UI/SearchDropdownUi";
 
 const OptionsList = ({ id, name }: { id: number; name?: string }) => {
   const [options, setOptions] = useState<Property[]>([]);
