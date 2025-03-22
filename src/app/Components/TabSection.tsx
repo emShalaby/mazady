@@ -86,10 +86,10 @@ const TabSection = ({
 
   return (
     <div className="flex flex-col md:max-w-[840px] lg:max-w-[1000px] bg-white p-2 md:p-6 rounded-2xl shadow-sm gap-2 sm:px-5 md:col-span-1 flex-1 md:min-w-[407px] h-full">
-      <div className="flex justify-between flex-1">
+      <div className="flex justify-between ">
         <nav className="flex gap-2 bg-white">
           <button
-            className={`flex-1 py-1 md:px-7 rounded-[14px] ${
+            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] ${
               activeTab === "Products"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -99,7 +99,7 @@ const TabSection = ({
             Products
           </button>
           <button
-            className={`flex-1 py-1 px-2 rounded-[14px] ${
+            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] ${
               activeTab === "Articles"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -109,7 +109,7 @@ const TabSection = ({
             Articles
           </button>
           <button
-            className={`flex-1 py-1 px-2 rounded-[14px] ${
+            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] ${
               activeTab === "Reviews"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
