@@ -119,7 +119,7 @@ const TabSection = ({
             Reviews
           </button>
         </nav>
-        <button className=" bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 px-3 md:flex items-center gap-2  hover:bg-[#d81b60] transition-colors hidden hover:cursor-pointer">
+        <button className=" bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 md:py-3 md:px-4 px-3 md:flex items-center gap-2  hover:bg-[#d81b60] transition-colors hidden hover:cursor-pointer">
           <Image
             src="/add-circle2.svg"
             alt="add-circle"
