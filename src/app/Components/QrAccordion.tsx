@@ -4,7 +4,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 
-const QRAccordion = () => {
+const QrAccordion = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -74,20 +74,23 @@ const QRAccordion = () => {
                 <Image
                   src="/logo.png"
                   alt="Mazaady Logo"
-                  width={32}
-                  height={32}
+                  width={152}
+                  height={48}
                 />
               </div>
             </div>
 
-            <div className="flex flex-col p-6 items-center">
-              <h3 className="text-lg font-medium mb-4">Hala Ahmed</h3>
+            <div className="flex flex-col p-6 items-center rounded-3xl">
+              <h3 className="text-xl sm:text-2xl  mb-4 font-bold">
+                Hala Ahmed
+              </h3>
 
-              <div className="mb-4 relative">
-                <img
-                  src="/placeholder.svg?height=200&width=200"
+              <div className=" relative ">
+                <Image
+                  src="/World-Static.png"
                   alt="QR Code"
-                  className="h-48 w-48"
+                  width={135}
+                  height={135}
                 />
               </div>
 
@@ -99,4 +102,4 @@ const QRAccordion = () => {
     </div>
   );
 };
-export default QRAccordion;
+export default QrAccordion;

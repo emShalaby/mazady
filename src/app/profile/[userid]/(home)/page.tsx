@@ -2,7 +2,7 @@ import React from "react";
 import Header from "@/app/profile/Header";
 import ProfileCard from "@/app/Components/ProfileCard";
 import { mockProducts, mockProfileInfo } from "@/lib/mock-data";
-import QRAccordion from "@/app/Components/QrAccordion";
+import QrAccordion from "@/app/Components/QrAccordion";
 import TabSection from "@/app/Components/TabSection";
 
 const UserHome = async ({
@@ -23,7 +23,7 @@ const UserHome = async ({
           </section>
 
           <section className=" md:max-w-[407px]">
-            <QRAccordion />
+            <QrAccordion />
           </section>
         </div>
 
