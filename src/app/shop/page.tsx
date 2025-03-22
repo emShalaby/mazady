@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getAllCategories, getCategoryProperties } from "@/app/actions";
 import type { Category, Property } from "@/lib/types";
 import SearchDropdownUi from "../Components/SearchDropdownUi";
+import OptionsList from "../Components/OptionsList";
 
 export default function CategorySelector() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -83,6 +84,11 @@ export default function CategorySelector() {
             />
           );
         })}
+        {selectedSubcategoryIds
+          .map((e) => e.id)
+          .map((id) => (
+            <OptionsList id={id} key={id} />
+          ))}
       </div>
     </>
   );

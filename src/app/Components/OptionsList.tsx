@@ -1,9 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getOptionProperties } from "../actions";
+import { Option, Property } from "@/lib/types";
+import SearchDropdownUi from "./SearchDropdownUi";
 
-const OptionsList = () => {
+const OptionsList = ({ id }: { id: number }) => {
+  const [options, setOptions] = useState<Property[]>([]);
+  const [selectedOptionIds, setSelectedOptionIds] = useState<
+    {
+      childId: number;
+      parentId: number;
+    }[]
+  >([]);
+
+  const filterFn = (value: Option | null): value is Option => value !== null;
+  const optionsHasOptions = options
+    .map((opt) => {
+      const selectedOption = selectedOptionIds.find(
+        (o) => o.parentId === opt.id
+      );
+      if (selectedOption) {
+        const optionOptions = opt.options.find(
+          (op) => op.id === selectedOption.childId && op.has_child
+        );
+        return optionOptions ?? null;
+      } else return null;
+    })
+    .filter(filterFn);
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const data = await getOptionProperties(id);
+        setOptions(data);
+      } catch (error) {
+        console.error("Error fetching options:", error);
+      }
+    };
+    fetchOptions();
+  }, [id]);
+
   return (
     <div>
-      <OptionsList />
+      {options.map((option) => {
+        return (
+          <SearchDropdownUi
+            key={option.id}
+            items={option.options}
+            onSelect={(item) =>
+              setSelectedOptionIds((prev) => {
+                const clone = [...prev];
+                const _option = clone.find((opt) => opt.parentId === option.id);
+
+                if (_option) {
+                  _option.childId = item.id;
+                  return clone;
+                } else {
+                  return [...clone, { parentId: option.id, childId: item.id }];
+                }
+              })
+            }
+            label={option.name}
+          />
+        );
+      })}
+      {optionsHasOptions.map((opt) => (
+        <OptionsList id={opt.id} key={opt.id} />
+      ))}
     </div>
   );
 };
