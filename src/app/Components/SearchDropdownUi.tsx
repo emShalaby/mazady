@@ -6,7 +6,7 @@ type ItemType = {
 };
 interface SearchDropdownPropsUi {
   items: ItemType[];
-  onSelect: (item: ItemType) => Promise<void> | void;
+  onSelect: (item: ItemType) => void;
   label: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
