@@ -10,10 +10,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "babel-plugin-react-compiler": "^19.0.0-beta-3229e95-20250315",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "next": "15.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-lines-ellipsis": "^0.15.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -23,6 +27,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
