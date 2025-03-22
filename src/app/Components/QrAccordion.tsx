@@ -12,7 +12,7 @@ const QRAccordion = () => {
       <div className="flex justify-between p-4 items-center">
         <h2 className="text-lg font-medium">QR Code</h2>
         <div className="flex gap-4 items-center ">
-          <button className="text-gray-500 hover:cursor-pointer hover:text-gray-700">
+          <button className="text-gray-500 hover:cursor-pointer hover:text-gray-700 ">
             <Image src="/eye.svg" alt="eye-icon" width={24} height={24} />
           </button>
           <button className="text-gray-500 hover:cursor-pointer hover:text-gray-700">

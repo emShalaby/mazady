@@ -70,7 +70,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
             </div>
           </div>
         </div>
-        <button className=" rounded-xl text-white custom-gradient py-2">
+        <button className=" rounded-xl text-white custom-gradient py-2 hover:cursor-pointer">
           Follow
         </button>
       </div>

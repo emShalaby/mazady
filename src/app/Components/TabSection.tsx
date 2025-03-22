@@ -89,7 +89,7 @@ const TabSection = ({
       <div className="flex justify-between ">
         <nav className="flex gap-2 bg-white">
           <button
-            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] ${
+            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] hover:cursor-pointer ${
               activeTab === "Products"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -99,7 +99,7 @@ const TabSection = ({
             Products
           </button>
           <button
-            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] ${
+            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] hover:cursor-pointer ${
               activeTab === "Articles"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -109,7 +109,7 @@ const TabSection = ({
             Articles
           </button>
           <button
-            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] ${
+            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] hover:cursor-pointer ${
               activeTab === "Reviews"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -119,7 +119,7 @@ const TabSection = ({
             Reviews
           </button>
         </nav>
-        <button className=" bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 px-3 md:flex items-center gap-2  hover:bg-[#d81b60] transition-colors hidden ">
+        <button className=" bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 px-3 md:flex items-center gap-2  hover:bg-[#d81b60] transition-colors hidden hover:cursor-pointer">
           <Image
             src="/add-circle2.svg"
             alt="add-circle"
@@ -132,7 +132,7 @@ const TabSection = ({
       {renderContent()}
 
       <button
-        className="fixed bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 px-3 flex items-center gap-2 shadow-lg hover:bg-[#d81b60] transition-colors z-50 md:hidden"
+        className="fixed bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 px-3 flex items-center gap-2 shadow-lg hover:bg-[#d81b60] transition-colors z-50 md:hidden hover:cursor-pointer"
         onClick={() => setActiveTab("Reviews")}
       >
         <Image src="/add-circle2.svg" alt="add-circle" width={18} height={18} />
