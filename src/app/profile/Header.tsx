@@ -60,7 +60,9 @@ const Header = ({ userId }: HeaderProps) => {
           <button className="hover:cursor-pointer">
             <Image src={"/globe.svg"} alt="globe-icon" width={24} height={24} />
           </button>
-          <p>EN</p>
+          <p className="border-l-1 pl-2 border-gray-400 font-extrabold text-xl">
+            EN
+          </p>
         </div>
       </div>
     </div>

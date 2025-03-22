@@ -58,7 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         </div>
         <div
-          className={`${isLiveAuction ? "bg-[#e91e63]" : "bg-[#ff951d]"} min-w-[66px] absolute bottom-0 right-0 text-white text-[8px] px-4 py-1 z-10 rounded-tl-[33px] rounded-br-[33px]`}
+          className={`${isLiveAuction ? "bg-[#e91e63]" : "bg-[#ff951d]"} min-w-[66px] md:min-w-[100px] justify-center md:text-sm flex absolute bottom-0 right-0 text-white text-[8px] px-4 py-1 md:py-2 z-10 rounded-tl-[33px] rounded-br-[33px]`}
         >
           {isLiveAuction ? "Live Auction" : "Hot Sale"}
         </div>
@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             src={imageUrl}
             alt={title}
             fill
-            className="object-cover rounded-2xl  "
+            className="object-cover rounded-[33px]  "
           />
         </div>
       </div>
