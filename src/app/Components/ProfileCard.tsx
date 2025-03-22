@@ -9,7 +9,7 @@ interface ProfileSectionProps {
   rate: number;
 }
 
-const ProfileSection: React.FC<ProfileSectionProps> = ({
+const ProfileCard: React.FC<ProfileSectionProps> = ({
   username,
   description,
   following,
@@ -17,7 +17,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
   rate,
 }) => {
   return (
-    <section className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 md:max-w-[407px] sm:px-5">
+    <>
       <div>
         <Image
           src={"/profile-pic-big.png"}
@@ -72,8 +72,8 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
       <button className="flex-1 rounded-xl text-white custom-gradient py-2">
         Follow
       </button>
-    </section>
+    </>
   );
 };
 
-export default ProfileSection;
+export default ProfileCard;

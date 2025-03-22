@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "@/app/profile/Header";
-import ProfileSection from "@/app/Components/ProfileSection";
+import ProfileCard from "@/app/Components/ProfileCard";
 import { mockProfileInfo } from "@/lib/mock-data";
 const UserHome = async ({
   params,
@@ -14,7 +14,9 @@ const UserHome = async ({
         <Header userId={userId} />
       </header>
       <main className="flex flex-col items-center  bg-[#f6f4f5] p-4  gap-6 min-h-screen  lg:px-21 lg:py-12">
-        <ProfileSection {...mockProfileInfo} />
+        <section className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 md:max-w-[407px] sm:px-5">
+          <ProfileCard {...mockProfileInfo} />
+        </section>
       </main>
     </div>
   );
