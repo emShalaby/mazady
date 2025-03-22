@@ -1,7 +1,10 @@
 import React from "react";
 import Header from "@/app/profile/Header";
 import ProfileCard from "@/app/Components/ProfileCard";
-import { mockProfileInfo } from "@/lib/mock-data";
+import { mockProducts, mockProfileInfo } from "@/lib/mock-data";
+import QRAccordion from "@/app/Components/QrAccordion";
+import TabSection from "@/app/Components/TabSection";
+
 const UserHome = async ({
   params,
 }: {
@@ -13,9 +16,19 @@ const UserHome = async ({
       <header>
         <Header userId={userId} />
       </header>
-      <main className="flex flex-col items-center  bg-[#f6f4f5] p-4  gap-6 min-h-screen  lg:px-21 lg:py-12">
-        <section className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 md:max-w-[407px] sm:px-5">
-          <ProfileCard {...mockProfileInfo} />
+      <main className="flex flex-col bg-[#f6f4f5] p-4 gap-6 min-h-screen md:px-21 lg:py-12 md:flex-row md:gap-6">
+        <div className="flex flex-col gap-6 ">
+          <section>
+            <ProfileCard {...mockProfileInfo} />
+          </section>
+
+          <section>
+            <QRAccordion />
+          </section>
+        </div>
+
+        <section>
+          <TabSection products={mockProducts} articles={[]} reviews={[]} />
         </section>
       </main>
     </div>
