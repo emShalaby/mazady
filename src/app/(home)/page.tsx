@@ -5,6 +5,7 @@ import { getAllCategories, getCategoryProperties } from "@/app/actions";
 import type { Category, Property } from "@/lib/types";
 import SearchDropdownUi from "../Components/UI/SearchDropdownUi";
 import OptionsList from "../Components/OptionsList";
+import { OTHER_LABEL } from "@/lib/constants";
 
 export default function CategorySelector() {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -21,7 +22,6 @@ export default function CategorySelector() {
   const [submittedValues, setSubmittedValues] = useState<
     [string, FormDataEntryValue][]
   >([]);
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -49,7 +49,7 @@ export default function CategorySelector() {
 
   const handleSubmit = (formData: FormData) => {
     const keyValues = Array.from(formData.entries()).filter(
-      ([, value]) => value !== ""
+      ([key, value]) => value !== "" && !key.includes(OTHER_LABEL)
     );
     setSubmittedValues(keyValues);
   };
@@ -97,12 +97,13 @@ export default function CategorySelector() {
                       })
                     }
                     label={subcategory.name}
+                    hasOther
                   />
                 );
               })}
             </div>
             <div className="mt-4">
-              {selectedSubcategoryIds.length > 0 && (
+              {selectedSubcategoryIds.filter((e) => e.id !== -1).length > 0 && (
                 <h1 className="text-2xl mb-4">Select Options</h1>
               )}
 

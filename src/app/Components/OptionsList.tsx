@@ -58,6 +58,7 @@ const OptionsList = ({ id, name }: { id: number; name?: string }) => {
           items={options}
           label={name ?? ""}
           onSelect={(item) => handleSelect(item, id)}
+          hasOther
         />
       ) : (
         <>
@@ -68,6 +69,7 @@ const OptionsList = ({ id, name }: { id: number; name?: string }) => {
                 items={option.options}
                 onSelect={(item) => handleSelect(item, option.id)}
                 label={option.name}
+                hasOther
               />
             );
           })}
