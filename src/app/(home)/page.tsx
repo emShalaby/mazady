@@ -22,8 +22,6 @@ export default function CategorySelector() {
     [string, FormDataEntryValue][]
   >([]);
 
-  console.log(selectedSubcategoryIds);
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -54,7 +52,6 @@ export default function CategorySelector() {
       ([, value]) => value !== ""
     );
     setSubmittedValues(keyValues);
-    console.log(keyValues);
   };
 
   return (
@@ -64,49 +61,59 @@ export default function CategorySelector() {
           <h1 className="text-2xl mb-4">Select a Category</h1>
           <SearchDropdownUi
             items={categories}
-            onSelect={(item) => setSelectedCategoryId(item.id)}
+            onSelect={(item) => {
+              setSelectedCategoryId(item.id);
+              setSelectedSubcategoryIds([]);
+            }}
             label="Main Category"
           />
         </div>
-        <div className="p-4 bg-white rounded-lg shadow-sm mb-4 ">
-          <h1 className="text-2xl mb-4">Select a subcategory</h1>
-          <div className="space-y-4 ">
-            {subcategories.map((subcategory) => {
-              return (
-                <SearchDropdownUi
-                  key={subcategory.id}
-                  items={subcategory.options}
-                  onSelect={(item) =>
-                    setSelectedSubcategoryIds((prev) => {
-                      const clone = [...prev];
-                      const _subcategory = clone.find(
-                        (sub) => sub.subcategoryId === subcategory.id
-                      );
+        {!!selectedCategoryId && (
+          <div className="p-4 bg-white rounded-lg shadow-sm mb-4 ">
+            <h1 className="text-2xl mb-4">Select Subcategory</h1>
 
-                      if (_subcategory) {
-                        _subcategory.id = item.id;
-                        return clone;
-                      } else {
-                        return [
-                          ...clone,
-                          { subcategoryId: subcategory.id, id: item.id },
-                        ];
-                      }
-                    })
-                  }
-                  label={subcategory.name}
-                />
-              );
-            })}
+            <div className="space-y-4 ">
+              {subcategories.map((subcategory) => {
+                return (
+                  <SearchDropdownUi
+                    key={subcategory.id}
+                    items={subcategory.options}
+                    onSelect={(item) =>
+                      setSelectedSubcategoryIds((prev) => {
+                        const clone = [...prev];
+                        const _subcategory = clone.find(
+                          (sub) => sub.subcategoryId === subcategory.id
+                        );
+
+                        if (_subcategory) {
+                          _subcategory.id = item.id;
+                          return clone;
+                        } else {
+                          return [
+                            ...clone,
+                            { subcategoryId: subcategory.id, id: item.id },
+                          ];
+                        }
+                      })
+                    }
+                    label={subcategory.name}
+                  />
+                );
+              })}
+            </div>
+            <div className="mt-4">
+              {selectedSubcategoryIds.length > 0 && (
+                <h1 className="text-2xl mb-4">Select Options</h1>
+              )}
+
+              {selectedSubcategoryIds
+                .map((e) => e.id)
+                .map((id) => (
+                  <OptionsList id={id} key={id} />
+                ))}
+            </div>
           </div>
-          <div className="mt-4">
-            {selectedSubcategoryIds
-              .map((e) => e.id)
-              .map((id) => (
-                <OptionsList id={id} key={id} />
-              ))}
-          </div>
-        </div>
+        )}
         <div className="flex justify-center mb-6">
           <button
             type="submit"
