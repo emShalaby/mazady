@@ -11,26 +11,29 @@ const OptionsList = ({ id, name }: { id: number; name?: string }) => {
       parentId: number;
     }[]
   >([]);
-  const filterFn = (value: Option | null): value is Option => value !== null;
-  const optionsHasOptions = options
-    .map((opt) => {
-      const selectedOption = selectedOptionIds.find(
-        (o) => o.parentId === opt.id
+
+  const isValidOption = (value: Option | null): value is Option =>
+    value !== null;
+  const nestedOptions = options
+    .map((parentOption) => {
+      const selectedParentOption = selectedOptionIds.find(
+        (selection) => selection.parentId === parentOption.id
       );
-      if (selectedOption) {
-        const optionOptions = opt.options.find(
-          (op) => op.id === selectedOption.childId && op.has_child
+      if (selectedParentOption) {
+        const childOption = parentOption.options.find(
+          (option) =>
+            option.id === selectedParentOption.childId && option.has_child
         );
-        return optionOptions ?? null;
+        return childOption ?? null;
       } else return null;
     })
-    .filter(filterFn);
+    .filter(isValidOption);
 
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const data = await getOptionProperties(id);
-        setOptions(data);
+        const fetchedOptions = await getOptionProperties(id);
+        setOptions(fetchedOptions);
       } catch (error) {
         console.error("Error fetching options:", error);
       }
@@ -38,22 +41,29 @@ const OptionsList = ({ id, name }: { id: number; name?: string }) => {
     fetchOptions();
   }, [id]);
 
-  const handleSelect = (item: { id: number; name: string }, id: number) =>
-    setSelectedOptionIds((prev) => {
-      const clone = [...prev];
-      const _option = clone.find((opt) => opt.parentId === id);
+  const handleSelect = (
+    selectedItem: { id: number; name: string },
+    parentId: number
+  ) =>
+    setSelectedOptionIds((prevSelections) => {
+      const updatedSelections = [...prevSelections];
+      const existingSelection = updatedSelections.find(
+        (selection) => selection.parentId === parentId
+      );
 
-      if (_option) {
-        _option.childId = item.id;
-        return clone;
+      if (existingSelection) {
+        existingSelection.childId = selectedItem.id;
+        return updatedSelections;
       } else {
-        return [...clone, { parentId: id, childId: item.id }];
+        return [...updatedSelections, { parentId, childId: selectedItem.id }];
       }
     });
 
   return (
     <div>
-      {options.map((opts) => opts.options).some((a) => a.length === 0) ? (
+      {options
+        .map((option) => option.options)
+        .some((optionList) => optionList.length === 0) ? (
         <SearchDropdownUi
           items={options}
           label={name ?? ""}
@@ -62,19 +72,23 @@ const OptionsList = ({ id, name }: { id: number; name?: string }) => {
         />
       ) : (
         <>
-          {options.map((option) => {
+          {options.map((parentOption) => {
             return (
               <SearchDropdownUi
-                key={option.id}
-                items={option.options}
-                onSelect={(item) => handleSelect(item, option.id)}
-                label={option.name}
+                key={parentOption.id}
+                items={parentOption.options}
+                onSelect={(item) => handleSelect(item, parentOption.id)}
+                label={parentOption.name}
                 hasOther
               />
             );
           })}
-          {optionsHasOptions.map((opt) => (
-            <OptionsList id={opt.id} key={opt.id} name={opt.name} />
+          {nestedOptions.map((childOption) => (
+            <OptionsList
+              id={childOption.id}
+              key={childOption.id}
+              name={childOption.name}
+            />
           ))}
         </>
       )}
