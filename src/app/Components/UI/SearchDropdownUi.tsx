@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-type ItemType = {
+export type ItemType = {
   name: string;
   id: number;
 };
