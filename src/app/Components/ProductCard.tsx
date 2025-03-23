@@ -73,7 +73,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
 
-      <div className="flex flex-col flex-wrap py-1 text-xs sm:text-sm md:text-sm lg:text-xl flex-1">
+      <div className="flex flex-col flex-wrap py-1 text-xs sm:text-sm md:text-sm lg:text-xl ">
         <div>
           <h3 className="font-medium text-gray-800 line-clamp-1">{title}</h3>
           <div className="mt-1 flex items-center gap-2">
@@ -87,7 +87,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="flex flex-col md:items-center md:flex-row md:gap-4">
           <p className="text-gray-500">Lot Starts In</p>
           <div className="flex gap-2 mt-1 text-orange-500">
-            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px] flex-1 md:px-1 lg:px-5 justify-center items-center">
+            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px]  md:px-1 lg:px-5 justify-center items-center">
               <span className="font-semibold">{timeRemaining.days}</span>
               <span className="ml-1">Days</span>
             </div>
@@ -103,7 +103,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
       <div
-        className="relative hidden lg:block min-w-[24px]"
+        className="relative hidden lg:flex min-w-[24px] ml-auto items-start"
         onClick={handleHeartClick}
       >
         <Image
