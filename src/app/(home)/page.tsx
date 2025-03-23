@@ -126,7 +126,7 @@ export default function CategorySelector() {
 
       {submittedValues.length > 0 && (
         <div className="p-4 bg-white rounded-lg shadow-sm">
-          <h2 className="text-xl mb-4 font-medium">Submitted Values</h2>
+          <h2 className="text-lg mb-4 font-medium">Submitted Values</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

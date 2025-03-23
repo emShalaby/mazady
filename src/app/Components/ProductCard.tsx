@@ -44,10 +44,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className="flex flex-row gap-4 w-full ">
-      <div className="relative ">
+    <div className="flex flex-row gap-4 lg:gap-9 w-full">
+      <div className="relative min-w-[100px] sm:min-w-[120px] md:min-w-[140px] lg:min-w-[160px]">
         <div
-          className="absolute top-2 left-2 z-10 bg-white rounded-full p-1 cursor-pointer md:hidden"
+          className="absolute top-2 left-2 z-10 bg-white rounded-full p-1 cursor-pointer lg:hidden"
           onClick={handleHeartClick}
         >
           <Image
@@ -58,58 +58,58 @@ const ProductCard: React.FC<ProductCardProps> = ({
           />
         </div>
         <div
-          className={`${isLiveAuction ? "bg-[#e91e63]" : "bg-[#ff951d]"} min-w-[66px] md:min-w-[100px] justify-center md:text-sm flex absolute bottom-0 right-0 text-white text-[8px] px-4 py-1 md:py-2 z-10 rounded-tl-[33px] rounded-br-[33px]`}
+          className={`${isLiveAuction ? "bg-[#e91e63]" : "bg-[#ff951d]"} justify-center sm:text-xs md:text-sm flex absolute bottom-0 right-0 text-white text-[8px] px-2 py-1 md:py-2 z-10 rounded-tl-[33px] rounded-br-[33px]`}
         >
           {isLiveAuction ? "Live Auction" : "Hot Sale"}
         </div>
-        <div className="w-20 md:w-37">
+        <div className="relative w-full min-h-[80px] md:min-h-[110px] lg:min-h-[120px]">
           <Image
             src={imageUrl}
             alt={title}
+            className="rounded-[33px] object-cover"
+            priority
             fill
-            className="object-cover rounded-[33px]  "
           />
         </div>
       </div>
 
-      <div className="flex flex-col flex-wrap py-1 text-xs sm:text-xl flex-1">
+      <div className="flex flex-col flex-wrap py-1 text-xs sm:text-sm md:text-sm lg:text-xl flex-1">
         <div>
-          <h3 className=" font-medium text-gray-800 line-clamp-1">{title}</h3>
+          <h3 className="font-medium text-gray-800 line-clamp-1">{title}</h3>
           <div className="mt-1 flex items-center gap-2">
-            <p className=" text-gray-500">Starting Price</p>
-            <p className="font-semibold  text-gray-900 md:font-extrabold md:text-2xl">
+            <p className="text-gray-500">Starting Price</p>
+            <p className="font-semibold text-gray-900 md:font-extrabold">
               {startingPrice}
             </p>
           </div>
         </div>
 
-        <div className=" flex flex-col md:items-center md:flex-row md:gap-4 ">
-          <p className=" text-gray-500 ">Lot Starts In</p>
-          <div className="flex gap-2 mt-1 text-orange-500 ">
-            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px] flex-1 md:px-5 justify-center items-center">
-              <span className="font-semibold ">{timeRemaining.days}</span>
-              <span className=" ml-1">Days</span>
+        <div className="flex flex-col md:items-center md:flex-row md:gap-4">
+          <p className="text-gray-500">Lot Starts In</p>
+          <div className="flex gap-2 mt-1 text-orange-500">
+            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px] flex-1 md:px-1 lg:px-5 justify-center items-center">
+              <span className="font-semibold">{timeRemaining.days}</span>
+              <span className="ml-1">Days</span>
             </div>
-            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px] flex-1 md:px-5 justify-center items-center">
-              <span className="font-semibold ">{timeRemaining.hours}</span>
-              <span className=" text-orange-500 ml-1">Hours</span>
+            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px] flex-1 md:px-1 lg:px-5 justify-center items-center">
+              <span className="font-semibold">{timeRemaining.hours}</span>
+              <span className="text-orange-500 ml-1">Hours</span>
             </div>
-            <div className="bg-[#fff8e1] px-2 py-1 rounded-[14px] flex-1 md:px-5 justify-center items-center">
+            <div className="bg-[#fff8e1] px-2  py-1 rounded-[14px] flex-1 md:px-1 lg:px-5 justify-center items-center">
               <span className="font-semibold">{timeRemaining.minutes}</span>
-              <span className=" text-orange-500 ml-1">Minutes</span>
+              <span className="text-orange-500 ml-1">Minutes</span>
             </div>
           </div>
         </div>
       </div>
       <div
-        className="py-2 hidden md:flex items-start "
+        className="relative hidden lg:block min-w-[24px]"
         onClick={handleHeartClick}
       >
         <Image
           src={isLiked ? "/heart-red.svg" : "/heart.svg"}
-          width={24}
-          height={24}
           alt="heart-icon"
+          fill
         />
       </div>
     </div>

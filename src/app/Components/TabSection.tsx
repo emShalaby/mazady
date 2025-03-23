@@ -35,9 +35,7 @@ const TabSection = ({
     return (
       <div className="flex flex-col gap-4 bg-white h-full">
         <div className="flex items-center gap-4 px-2">
-          <h1 className="font-extrabold text-[32px] text-[#333333]">
-            {activeTab}
-          </h1>
+          <h1 className="font-extrabold text-lg text-[#333333]">{activeTab}</h1>
           <p className="text-gray-400 text-sm">( {data.length} )</p>
         </div>
         <div className="w-full flex-1">
@@ -96,11 +94,11 @@ const TabSection = ({
   };
 
   return (
-    <div className="flex flex-col  bg-white p-2 md:p-6 rounded-2xl shadow-sm gap-2 sm:px-5 flex-1 md:flex-none  w-full">
+    <div className="flex flex-col  bg-white p-2 md:p-6 rounded-2xl shadow-sm gap-2 flex-1 md:flex-none  w-full">
       <div className="flex justify-between">
         <nav className="flex gap-2 bg-white">
           <button
-            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] hover:cursor-pointer ${
+            className={` py-1 px-4  rounded-[14px] hover:cursor-pointer ${
               activeTab === "Products"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -110,7 +108,7 @@ const TabSection = ({
             Products
           </button>
           <button
-            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] hover:cursor-pointer ${
+            className={` py-1 px-4  rounded-[14px] hover:cursor-pointer ${
               activeTab === "Articles"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -120,7 +118,7 @@ const TabSection = ({
             Articles
           </button>
           <button
-            className={`flex-1 py-1 px-4 md:px-7 rounded-[14px] hover:cursor-pointer ${
+            className={`flex-1 py-1 px-4  rounded-[14px] hover:cursor-pointer ${
               activeTab === "Reviews"
                 ? "border-[1px] border-[#FF951D] bg-[#fff5e9] text-[#FF951D]"
                 : ""
@@ -130,7 +128,7 @@ const TabSection = ({
             Reviews
           </button>
         </nav>
-        <button className="bottom-6 right-6 custom-gradient text-white rounded-xl text-sm py-2 md:py-3 px-1 md:flex items-center gap-2 hover:bg-[#d81b60] transition-colors hidden hover:cursor-pointer">
+        <button className=" custom-gradient text-white rounded-xl text-sm py-2 px-2 md:flex items-center gap-2 hover:bg-[#d81b60] transition-colors hidden hover:cursor-pointer">
           <Image
             src="/add-circle2.svg"
             alt="add-circle"

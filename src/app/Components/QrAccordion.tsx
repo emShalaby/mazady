@@ -81,7 +81,7 @@ const QrAccordion = () => {
             </div>
 
             <div className="flex flex-col p-6 items-center rounded-3xl">
-              <h3 className="text-xl sm:text-2xl  mb-4 font-bold">
+              <h3 className="text-lg sm:text-2xl  mb-4 font-bold">
                 Hala Ahmed
               </h3>
 
