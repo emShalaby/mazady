@@ -18,7 +18,10 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 ">
+      <div
+        role="article"
+        className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 "
+      >
         <div>
           <Image
             src={"/profile-pic-big.png"}
@@ -35,7 +38,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
               src={"/user-tick.svg"}
               height={24}
               width={22}
-              alt="user-tick-icon"
+              alt="following-icon"
             />
             <div className="flex flex-col justify-center">
               <p>{following}</p>
@@ -47,7 +50,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
               src={"/profile-2user.svg"}
               height={24}
               width={22}
-              alt="user-tick-icon"
+              alt="followers-icon"
             />
             <div className="flex flex-col justify-center">
               <p>{followers}</p>
@@ -59,7 +62,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
               src={"/magic-star.svg"}
               height={24}
               width={22}
-              alt="user-tick-icon"
+              alt="rate-icon"
             />
             <div className="flex flex-col justify-center">
               <div className="flex gap-1 items-center">

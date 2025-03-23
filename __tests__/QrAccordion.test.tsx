@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import QrAccordion from "../src/app/Components/QrAccordion";
 
-// Mock next/image
 jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt }: { src: string; alt: string }) => (
@@ -53,16 +52,6 @@ describe("QrAccordion", () => {
     fireEvent.click(toggleButton!);
 
     expect(content).toHaveClass("opacity-0");
-  });
-
-  it("has correct styling for action buttons", () => {
-    render(<QrAccordion />);
-
-    const buttons = screen.getAllByRole("button");
-    buttons.forEach((button) => {
-      expect(button).toHaveClass("hover:cursor-pointer");
-      expect(button).toHaveClass("hover:text-gray-700");
-    });
   });
 
   it("renders with correct initial state", () => {

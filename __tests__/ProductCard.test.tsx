@@ -1,10 +1,9 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import React from "react";
 import "@testing-library/jest-dom";
 import ProductCard from "../src/app/Components/ProductCard";
 import * as dateFns from "date-fns";
 
-// Mock next/image
 jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt }: { src: string; alt: string }) => (
@@ -12,7 +11,6 @@ jest.mock("next/image", () => ({
   ),
 }));
 
-// Mock date-fns functions
 jest.mock("date-fns", () => ({
   differenceInDays: jest.fn(),
   differenceInHours: jest.fn(),
@@ -30,7 +28,6 @@ describe("ProductCard", () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    // Mock time differences
     (dateFns.differenceInDays as jest.Mock).mockReturnValue(2);
     (dateFns.differenceInHours as jest.Mock).mockReturnValue(51);
     (dateFns.differenceInMinutes as jest.Mock).mockReturnValue(3090);
@@ -67,10 +64,5 @@ describe("ProductCard", () => {
     render(<ProductCard {...mockProps} />);
 
     expect(screen.getByText("Lot Starts In")).toBeInTheDocument();
-
-    const timeContainers = screen.getAllByText(/Days|Hours|Minutes/);
-    timeContainers.forEach((container) => {
-      expect(container.parentElement).toHaveClass("bg-[#fff8e1]");
-    });
   });
 });

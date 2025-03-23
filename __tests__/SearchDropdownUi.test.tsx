@@ -138,19 +138,16 @@ describe("SearchDropdownUi", () => {
         />
       );
 
-      // Select Other option
       const mainInput = screen.getByPlaceholderText("search");
       fireEvent.focus(mainInput);
       fireEvent.click(screen.getByText("Other"));
 
-      // Verify Other selection
       expect(mockOnSelect).toHaveBeenCalledWith({
         name: "Other",
         id: OTHER_ID,
       });
       expect(mainInput).toHaveValue("Other");
 
-      // Enter custom value
       const otherInput = screen.getByPlaceholderText("Enter custom option");
       fireEvent.change(otherInput, { target: { value: "Custom Fruit" } });
       expect(otherInput).toHaveValue("Custom Fruit");
@@ -166,7 +163,6 @@ describe("SearchDropdownUi", () => {
         />
       );
 
-      // Select Other and enter custom value
       const mainInput = screen.getByPlaceholderText("search");
       fireEvent.focus(mainInput);
       fireEvent.click(screen.getByText("Other"));
@@ -174,11 +170,9 @@ describe("SearchDropdownUi", () => {
       const otherInput = screen.getByPlaceholderText("Enter custom option");
       fireEvent.change(otherInput, { target: { value: "Custom Fruit" } });
 
-      // Interact with main input
       fireEvent.focus(mainInput);
       fireEvent.change(mainInput, { target: { value: "app" } });
 
-      // Verify Other input maintains its value
       expect(otherInput).toHaveValue("Custom Fruit");
     });
   });
