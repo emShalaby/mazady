@@ -37,7 +37,7 @@ const BurgerMenu = ({ userId }: BurgerMenuProps) => {
         isOpen={isOpen}
         onStateChange={handleStateChange}
         width="280px"
-        className="bg-white text-black"
+        className="bg-white text-black left-0 h-screen"
       >
         <Link
           href={`/profile/${userId}`}
