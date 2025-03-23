@@ -85,8 +85,8 @@ const mockProducts = [
   },
 ];
 const mockProfileInfo={
-  username:"Heba Ahmed",
-  description:"I am Hala Ahmed, I am the owner of the local brand called Beauty which is for Mackeup and kin Care.",
+  username:"Hala Ahmed",
+  description:"I am Hala Ahmed, I am the owner of the local brand called Beauty which is for makeup and skin Care.",
   following:5,
   followers:20,
   rate:4.2
