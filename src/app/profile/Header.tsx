@@ -7,7 +7,7 @@ interface HeaderProps {
 }
 const Header = ({ userId }: HeaderProps) => {
   return (
-    <div className="flex justify-between py-4 sm:py-4 lg:px-20 md:px-10 px-4  sm:px-8 md:py-0">
+    <div className="flex justify-between py-4 sm:py-4 lg:px-20 md:px-10 px-4  sm:px-8 md:py-0 max-w-[2000px] flex-1 ">
       <div className="flex gap-2 sm:gap-4">
         <BurgerMenu userId={userId} />
 
