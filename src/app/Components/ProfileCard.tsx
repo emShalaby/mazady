@@ -18,7 +18,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 sm:px-5 md:p-6">
+      <div className="flex flex-col bg-white p-3 rounded-2xl shadow-sm gap-2 ">
         <div>
           <Image
             src={"/profile-pic-big.png"}
@@ -29,8 +29,8 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
         </div>
         <h1 className="text-xl font-extrabold">{username}</h1>
         <p>{description}</p>
-        <div className="flex flex-1 justify-center gap-2 items-center">
-          <div className="flex flex-1 bg-[#fff5e9] p-2 rounded-2xl gap-2 items-center">
+        <div className="flex flex-1 justify-center gap-1 items-center">
+          <div className="flex flex-1 bg-[#fff5e9] py-2 rounded-2xl gap-2 items-center">
             <Image
               src={"/user-tick.svg"}
               height={24}
@@ -70,7 +70,7 @@ const ProfileCard: React.FC<ProfileSectionProps> = ({
             </div>
           </div>
         </div>
-        <button className=" rounded-xl text-white custom-gradient py-2 hover:cursor-pointer">
+        <button className="rounded-xl text-white custom-gradient py-2 hover:cursor-pointer">
           Follow
         </button>
       </div>
